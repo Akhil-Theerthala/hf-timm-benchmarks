@@ -13,19 +13,19 @@ The [pytorch-image-models](https://github.com/huggingface/pytorch-image-models/t
       * Source: https://github.com/google-research/reassessed-imagenet
       * Paper: "Are we done with ImageNet?" - https://arxiv.org/abs/2006.07159
 
-2. You can also run the `add_model_size.py` file to add the model size to any of the csvs you obtain or create from the benchmarks. The script uses `beautifulsoup4` to scrape the model size from the HuggingFace model hub.
-   1. You can install the dependencies using the following command,
+   2. You can also run the `add_model_size.py` file to add the model size to any of the csvs you obtain or create from the benchmarks. The script uses `beautifulsoup4` to scrape the model size from the HuggingFace model hub.
+      1. You can install the dependencies using the following command,
       ```bash
-      pip install -r requirements.txt
+         pip install -r requirements.txt
       ```
-    2. You can run the script using the following command,
+       2. You can run the script using the following command,
       ```bash
-        python add_model_size.py --orig_score_path <path_to_original_csv>  --hf_access_token <huggingface_access_token> --temp_file_path <path_to_store_temp_files>  --output_path <path_to_store_final_csv>
+           python add_model_size.py --orig_score_path <path_to_original_csv>  --hf_access_token <huggingface_access_token> --temp_file_path <path_to_store_temp_files>  --output_path <path_to_store_final_csv>
       ```
-    * The `--hf_access_token` is optional. You can get it from your HuggingFace account. It is used to increase the rate limit of the HuggingFace API.
-    * The `--temp_file_path` is optional. It is used to store the temporary files that are used to scrape the model size from the HuggingFace model hub. If not provided, the temporary files are stored in the current directory. These will be deleted after the entire process is done.
-    * The `--output_path` is used to store the final csv file. If not provided, the final csv file is stored in the current directory.
-    * The `--orig_score_path` is the path to the original csv file that you want to add the model size to.
+       * The `--hf_access_token` is optional. You can get it from your HuggingFace account. It is used to increase the rate limit of the HuggingFace API.
+       * The `--temp_file_path` is optional. It is used to store the temporary files that are used to scrape the model size from the HuggingFace model hub. If not provided, the temporary files are stored in the current directory. These will be deleted after the entire process is done.
+       * The `--output_path` is used to store the final csv file. If not provided, the final csv file is stored in the current directory.
+       * The `--orig_score_path` is the path to the original csv file that you want to add the model size to.
 
 
 ---
