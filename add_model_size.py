@@ -1,5 +1,6 @@
 import ssl
 import time
+import os
 import requests
 import argparse
 import pandas as pd
@@ -113,10 +114,14 @@ def get_final_df(score_df_path, scraped_size_path, hf_access_token):
     return final_df
 
 def parse_args(parser):
-    parser.add_argument("--orig_score_path", type=str, default="results-imagenet-real.csv",
+    parser.add_argument("--orig_score_path", type=str,
                         help="Path to the original score csv file")
-    parser.add_argument("--scraped_size_path", type=str, default="model_sizes.csv",
-                        help="Path to the scraped model sizes csv file")
+    parser.add_argument("--temp_file_path", type=str, default="temp_model_sizes.csv",
+                        help=
+                        """
+                        Path to the save the temporary scraped model sizes csv file before combining with the df."
+                        This file is used to resume the scraping process
+                        """)
     parser.add_argument("--hf_access_token", type=str, default=None,
                         help="Hugging Face access token")
     parser.add_argument("--output_path", type=str, default="final_df.csv",
@@ -131,3 +136,9 @@ if __name__ == "__main__":
     HF_ACCESS_TOKEN = args.hf_access_token
     final_df = get_final_df(args.orig_score_path, args.scraped_size_path, HF_ACCESS_TOKEN)
     final_df.to_csv(output_path, index=False)
+
+    #remove the temp_folder if it exists
+    try:
+        os.remove(args.scraped_size_path)
+    except FileNotFoundError:
+        pass
