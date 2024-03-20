@@ -28,5 +28,6 @@ The [pytorch-image-models](https://github.com/huggingface/pytorch-image-models/t
     * The `--orig_score_path` is the path to the original csv file that you want to add the model size to.
 
 
-
+---
+### Footnotes
 $1.$ Though the statement is generally true in practice, it is not always the case. The wider models can indeed be designed to have a smaller memory footprint than the deeper model. This was just an example. 
