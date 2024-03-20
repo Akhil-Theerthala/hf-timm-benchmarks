@@ -117,7 +117,7 @@ def parse_args(parser):
                         help="Path to the original score csv file")
     parser.add_argument("--scraped_size_path", type=str, default="model_sizes.csv",
                         help="Path to the scraped model sizes csv file")
-    parser.add_argument("--hf_access_token", type=str, default='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',
+    parser.add_argument("--hf_access_token", type=str, default=None,
                         help="Hugging Face access token")
     parser.add_argument("--output_path", type=str, default="final_df.csv",
                         help="Path to save the final dataframe")
