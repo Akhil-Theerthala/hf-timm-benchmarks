@@ -1,10 +1,12 @@
 import ssl
 import time
+import requests
+import argparse
 import pandas as pd
 import numpy as np
 from tqdm.auto import tqdm
 from bs4 import BeautifulSoup as soup
-import requests
+
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -105,14 +107,27 @@ def get_final_df(score_df_path, scraped_size_path, hf_access_token):
     # A final dataframe with only the required columns
     final_cols = ['model', 'model_size_in_mb', 'top1', 'top1_err', 'top5', 'top5_err', 'param_count',
                   'img_size', 'crop_pct', 'interpolation', 'top1_diff', 'top5_diff',
-                  'rank_diff']
+                  ]
 
     final_df = combined_df.loc[:, final_cols].copy()
     return final_df
 
-if __name__ == "__main__":
-    orig_score_path = "results-imagenet-real.csv"
-    scraped_size_path = "model_sizes.csv"
-    hf_access_token = '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'
+def parse_args(parser):
+    parser.add_argument("--orig_score_path", type=str, default="results-imagenet-real.csv",
+                        help="Path to the original score csv file")
+    parser.add_argument("--scraped_size_path", type=str, default="model_sizes.csv",
+                        help="Path to the scraped model sizes csv file")
+    parser.add_argument("--hf_access_token", type=str, default='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',
+                        help="Hugging Face access token")
+    parser.add_argument("--output_path", type=str, default="final_df.csv",
+                        help="Path to save the final dataframe")
+    args = parser.parse_args()
+    return args
 
-    final_df = get_final_df(orig_score_path, scraped_size_path, hf_access_token)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    args = parse_args(parser)
+    output_path = args.output_path
+    HF_ACCESS_TOKEN = args.hf_access_token
+    final_df = get_final_df(args.orig_score_path, args.scraped_size_path, HF_ACCESS_TOKEN)
+    final_df.to_csv(output_path, index=False)
