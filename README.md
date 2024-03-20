@@ -8,7 +8,7 @@ The [pytorch-image-models](https://github.com/huggingface/pytorch-image-models/t
 <br>
 
 # Usage
-1. You can directly see the `final_df.csv` file for the benchmarking results of the models on **`imagenet-real`** dataset.**Imagenet-real** is the usual ImageNet-1k validation set with a fresh new set of labels intended to improve on mistakes in the original annotation process.
+1. You can directly see the [`final_df.csv`](https://github.com/Akhil-Theerthala/hf-timm-benchmarks/blob/main/results/final_df.csv) file for the benchmarking results of the models on **`imagenet-real`** dataset.**Imagenet-real** is the usual ImageNet-1k validation set with a fresh new set of labels intended to improve on mistakes in the original annotation process.
       * Source: https://github.com/google-research/reassessed-imagenet
       * Paper: "Are we done with ImageNet?" - https://arxiv.org/abs/2006.07159
 <br>
